@@ -287,7 +287,7 @@ public class TTTProcessor {
 		recording.setMessages(messages);
 		
 		for(Message m : messages){
-			System.out.println("what's going on? " +  Editor2.getStringFromTime( m.getTimestamp()) + " . damn " + m.toString());
+			//System.out.println("what's going on? " +  Editor2.getStringFromTime( m.getTimestamp()) + " . damn " + m.toString());
 		}
 		
 		

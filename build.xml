@@ -74,8 +74,14 @@
     <copy todir="${dist}"><fileset dir="${native}"></fileset></copy>
     <copy todir="${dist}" file="run.sh" />
     <copy todir="${dist}" file="beamer.sh" />
+    <copy todir="${dist}" file="beamer169.sh" />
     <copy todir="${dist}" file="rotateTablet.sh" />
     <copy todir="${dist}" file="rotatebackTablet.sh" />
+    <copy todir="${dist}" file="vncserver.sh" />
+    <copy todir="${dist}" file="vncserver169.sh" />
+    <copy todir="${dist}" file="touch-on.sh" />
+    <copy todir="${dist}" file="touch-off.sh" />
+    <copy todir="${dist}" file="run.sh" />
     <zip destfile="./ttt.zip" basedir="." includes="dist/*" update="true"/> 
   </target>
 

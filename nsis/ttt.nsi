@@ -18,10 +18,10 @@ BrandingText " "
 ;Page directory
 ;Page instfiles
 
-;steal most recent URLs from http://www.oracle.com/technetwork/java/javase/downloads/jre7-downloads-1880261.html
+;steal most recent URLs from http://www.oracle.com/technetwork/java/javase/downloads/jdk8-downloads-2133151.html
 !define JRE_VERSION "1.7"
-!define JREX_URL "http://javadl.sun.com/webapps/download/AutoDL?BundleId=81819"
-!define JREI_URL "http://javadl.sun.com/webapps/download/AutoDL?BundleId=81819"
+!define JREX_URL "ttp://javadl.sun.com/webapps/download/AutoDL?BundleId=81821"
+!define JREI_URL "http://download.oracle.com/otn-pub/java/jdk/8u152-b16/aa0333dd3019491ca4f6ddbe78cdb6d0/jdk-8u152-windows-i586.exe"
 Var JRE_URL
 
 Function .onInit

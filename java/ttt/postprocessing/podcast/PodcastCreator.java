@@ -47,7 +47,7 @@ public class PodcastCreator {
 
 	private static final int RESOLUTION_WIDTH = 480;
 	private static final int RESOLUTION_HEIGTH = 320;
-	private static final String FFMPEG = "avconv";
+	private static final String FFMPEG = "ffmpeg";
 	private static final String MP4BOX = "MP4Box";
 
 	private static final double FRAMES_PER_SEC = 1;

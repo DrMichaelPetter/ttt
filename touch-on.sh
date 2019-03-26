@@ -1,2 +1,3 @@
 #!/bin/bash
-xinput enable 16
+input=`xinput | grep Digitizer | cut -f2 | cut -f2 -d=`
+xinput enable $input
