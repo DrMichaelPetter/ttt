@@ -1,0 +1,18 @@
+image: java:latest
+
+before_script:
+  - echo nothing
+
+stages:
+  - build
+
+build:
+  stage: build
+  script: 
+    - ant clean
+    - ant installer
+  artifacts:
+    name: "ttt-$CI_COMMIT_SHORT_SHA"
+    paths:
+    - installer.exe
+    - ttt.zip
