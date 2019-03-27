@@ -2,4 +2,6 @@
 
 ## Download
 
-Linux: https://versioncontrolseidl.in.tum.de/ttt/teleteaching-standalone/-/jobs/artifacts/master/raw/installer.exe?job=build
+* Windows: https://versioncontrolseidl.in.tum.de/ttt/teleteaching-standalone/-/jobs/artifacts/master/raw/installer.exe?job=build
+
+* Linux: https://versioncontrolseidl.in.tum.de/ttt/teleteaching-standalone/-/jobs/artifacts/master/raw/ttt.zip?job=build
