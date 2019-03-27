@@ -1,3 +1,5 @@
+[![pipeline status](https://versioncontrolseidl.in.tum.de/ttt/teleteaching-standalone/badges/master/pipeline.svg)](https://versioncontrolseidl.in.tum.de/ttt/teleteaching-standalone/commits/master)
+
 # Teleteaching Tool
 
 ## Download
