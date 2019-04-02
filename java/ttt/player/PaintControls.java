@@ -27,33 +27,30 @@ package ttt.player;
 import java.awt.Color;
 import java.awt.Cursor;
 import java.awt.Dimension;
-import java.awt.Insets;
 import java.awt.event.ActionEvent;
 import java.awt.event.ActionListener;
 
+
 import javax.swing.AbstractButton;
-import javax.swing.BorderFactory;
 import javax.swing.Box;
 import javax.swing.BoxLayout;
 import javax.swing.ButtonGroup;
 import javax.swing.Icon;
 import javax.swing.JButton;
-import javax.swing.JCheckBox;
-import javax.swing.JRadioButton;
 import javax.swing.JToggleButton;
 import javax.swing.SwingConstants;
 
 import ttt.Constants;
+import static ttt.Constants.highResIcon;
 import ttt.gui.GradientPanel;
-import ttt.gui.RollOverButton;
 import ttt.messages.Annotation;
 
 
 
 public class PaintControls extends GradientPanel {
 
-    private JCheckBox activateButton;
-    private JRadioButton[] colorButtons;
+    private JToggleButton activateButton;
+    private JToggleButton[] colorButtons;
 
     private AbstractButton mouseButton;
     private AbstractButton textButton;
@@ -93,65 +90,65 @@ public class PaintControls extends GradientPanel {
     private void jbInit() throws Exception {
       
     	
-        activateButton = new JCheckBox();
-        activateButton.setIcon(Constants.getIcon("Enable16.gif"));        
-        activateButton.setSelectedIcon(Constants.getIcon("Enable_active16.gif"));
+        activateButton = new JToggleButton(Constants.highResIcon("check.png","Enable_active16.gif"));
+        //activateButton.setIcon(Constants.getIcon("Enable16.gif"));        
+        //activateButton.setSelectedIcon(Constants.getIcon("Enable_active16.gif"));
         activateButton.setToolTipText("Activate painting");
         activateButton.setFocusable(false);
         
-        colorButtons = new JRadioButton[5];
+        colorButtons = new JToggleButton[5];
         for (int i = 0; i < colorButtons.length; i++) {
-            colorButtons[i] = new JRadioButton();
+            colorButtons[i] = new JToggleButton();
         }
 
-        Icon colorIcon = Constants.getIcon("color_button24.gif");
+        Icon colorIcon = Constants.highResIcon("colorblack.png","color_button24.gif");
         Icon colorActiveIcon = Constants.getIcon("color_button_active24.gif");
         Icon colorRolloverIcon = Constants.getIcon("color_button_rollover24.gif");
         
         // color buttons
         
         colorButtons[0].setBackground(Color.RED);
-        colorButtons[0].setBorder(BorderFactory.createEmptyBorder());
+        //colorButtons[0].setBorder(BorderFactory.createEmptyBorder());
         colorButtons[0].setToolTipText("Choose Color");
-        colorButtons[0].setIcon(colorIcon);
-        colorButtons[0].setSelectedIcon(colorActiveIcon);
-        colorButtons[0].setRolloverIcon(colorRolloverIcon);
+        //colorButtons[0].setIcon(colorIcon);
+        colorButtons[0].setIcon(Constants.highResIcon("colorred.png","color_button24.gif"));
+        //colorButtons[0].setRolloverIcon(colorRolloverIcon);
         colorButtons[0].setFocusable(false);
         colorButtons[0].setOpaque(true);
 
         colorButtons[1].setBackground(Color.BLUE);
-        colorButtons[1].setBorder(BorderFactory.createEmptyBorder());
+        //colorButtons[1].setBorder(BorderFactory.createEmptyBorder());
         colorButtons[1].setToolTipText("Choose Color");
-        colorButtons[1].setIcon(colorIcon);
-        colorButtons[1].setSelectedIcon(colorActiveIcon);
-        colorButtons[1].setRolloverIcon(colorRolloverIcon);
+        //colorButtons[1].setIcon(colorIcon);
+        colorButtons[1].setIcon(Constants.highResIcon("colorblue.png","color_button24.gif"));
+        //colorButtons[1].setRolloverIcon(colorRolloverIcon);
         colorButtons[1].setFocusable(false);
         colorButtons[1].setOpaque(true);
 
         colorButtons[2].setBackground(Color.GREEN);
-        colorButtons[2].setBorder(BorderFactory.createEmptyBorder());
+        //colorButtons[2].setBorder(BorderFactory.createEmptyBorder());
         colorButtons[2].setToolTipText("Choose Color");
-        colorButtons[2].setIcon(colorIcon);
-        colorButtons[2].setSelectedIcon(colorActiveIcon);
-        colorButtons[2].setRolloverIcon(colorRolloverIcon);
+        //colorButtons[2].setIcon(colorIcon);
+        colorButtons[2].setIcon(Constants.highResIcon("colorgreen.png","color_button24.gif"));
+        //colorButtons[2].setRolloverIcon(colorRolloverIcon);
         colorButtons[2].setFocusable(false);
         colorButtons[2].setOpaque(true);
 
         colorButtons[3].setBackground(Color.YELLOW);
-        colorButtons[3].setBorder(BorderFactory.createEmptyBorder());
+        //colorButtons[3].setBorder(BorderFactory.createEmptyBorder());
         colorButtons[3].setToolTipText("Choose Color");
-        colorButtons[3].setIcon(colorIcon);
-        colorButtons[3].setSelectedIcon(colorActiveIcon);
-        colorButtons[3].setRolloverIcon(colorRolloverIcon);
+        //colorButtons[3].setIcon(colorIcon);
+        colorButtons[3].setIcon(Constants.highResIcon("coloryellow.png","color_button24.gif"));
+        //colorButtons[3].setRolloverIcon(colorRolloverIcon);
         colorButtons[3].setFocusable(false);
         colorButtons[3].setOpaque(true);
 
         colorButtons[4].setBackground(Color.BLACK);
-        colorButtons[4].setBorder(BorderFactory.createEmptyBorder());
+        //colorButtons[4].setBorder(BorderFactory.createEmptyBorder());
         colorButtons[4].setToolTipText("Choose Color");
-        colorButtons[4].setIcon(colorIcon);
-        colorButtons[4].setSelectedIcon(colorActiveIcon);
-        colorButtons[4].setRolloverIcon(colorRolloverIcon);
+        //colorButtons[4].setIcon(colorIcon);
+        colorButtons[4].setIcon(Constants.highResIcon("colorblack.png","color_button24.gif"));
+        //colorButtons[4].setRolloverIcon(colorRolloverIcon);
         colorButtons[4].setFocusable(false);
         colorButtons[4].setOpaque(true);
 
@@ -161,68 +158,72 @@ public class PaintControls extends GradientPanel {
 
         // paint modes
         
-        mouseButton = new JToggleButton();
+        mouseButton = new JToggleButton(highResIcon("mouse.png","mouse24.png"));
         mouseButton.setToolTipText("Mouse");
-        mouseButton.setBorder(BorderFactory.createEmptyBorder());
-        mouseButton.setIcon(Constants.getIcon("mouse24.png"));
-        mouseButton.setSelectedIcon(Constants.getIcon("mouse_active24.png"));
-        mouseButton.setRolloverIcon(Constants.getIcon("mouse_rollover24.png"));
+        //mouseButton.setBorder(BorderFactory.createEmptyBorder());
+        //mouseButton.setIcon(Constants.getIcon("mouse24.png"));
+        //mouseButton.setIcon(loadIcon("mouse.png","mouse24.png"));
+        //mouseButton.setSelectedIcon(loadIcon("mouse.png","mouse_active24.png"));
+        //mouseButton.setRolloverIcon(loadIcon("mouse.png","mouse_rollover24.png"));
         mouseButton.setSelected(true);
         mouseButton.setFocusable(false);
+        //Dimension dim = mouseButton.getPreferredSize();
+        //dim.setSize(Math.max(dim.getWidth(),60),Math.max(60,dim.getHeight()));
+
         
-        textButton = new JToggleButton();
+        textButton = new JToggleButton(highResIcon("text.png","text24.png"));
         textButton.setToolTipText("Text");
-        textButton.setBorder(BorderFactory.createEmptyBorder());
-        textButton.setIcon(Constants.getIcon("text24.png"));
-        textButton.setSelectedIcon(Constants.getIcon("text_active24.png"));
-        textButton.setRolloverIcon(Constants.getIcon("text_rollover24.png"));
+        //textButton.setBorder(BorderFactory.createEmptyBorder());
+        //textButton.setIcon(loadIcon("text.png","text24.png"));
+        //textButton.setSelectedIcon(loadIcon("text.png","text_active24.png"));
+        //textButton.setRolloverIcon(loadIcon("text.png","text_rollover24.png"));
         textButton.setFocusable(false);
         
-        highlightButton = new JToggleButton();
+        highlightButton = new JToggleButton(highResIcon("highlight.png","Highlight24_new.gif"));
         highlightButton.setToolTipText("Highlight");
-        highlightButton.setBorder(BorderFactory.createEmptyBorder());
-        highlightButton.setIcon(Constants.getIcon("Highlight24_new.gif"));
-        highlightButton.setSelectedIcon(Constants.getIcon("Highlight_active24_new.gif"));
-        highlightButton.setRolloverIcon(Constants.getIcon("Highlight_rollover24_new.gif"));
+        //highlightButton.setBorder(BorderFactory.createEmptyBorder());
+        //highlightButton.setIcon(loadIcon("highlight.png","Highlight24_new.gif"));
+        //highlightButton.setSelectedIcon(loadIcon("highlight.png","Highlight_active24_new.gif"));
+        //highlightButton.setRolloverIcon(loadIcon("highlight.png","Highlight_rollover24_new.gif"));
         highlightButton.setFocusable(false);
 
-        freeButton = new JToggleButton();
+        freeButton = new JToggleButton(highResIcon("freehand.png","Freehand24_new.gif"));
         freeButton.setToolTipText("Freehand");
-        freeButton.setBorder(BorderFactory.createEmptyBorder());
-        freeButton.setIcon(Constants.getIcon("Freehand24_new.gif"));
-        freeButton.setSelectedIcon(Constants.getIcon("Freehand_active24_new.gif"));
-        freeButton.setRolloverIcon(Constants.getIcon("Freehand_rollover24_new.gif"));
+        //freeButton.setBorder(BorderFactory.createEmptyBorder());
+        //freeButton.setIcon(loadIcon("freehand.png","Freehand24_new.gif"));
+        //freeButton.setSelectedIcon(loadIcon("freehand.png","Freehand_active24_new.gif"));
+        //freeButton.setRolloverIcon(loadIcon("freehand.png","Freehand_rollover24_new.gif"));
         freeButton.setFocusable(false);
 
-        rectangleButton = new JToggleButton();
+        rectangleButton = new JToggleButton(highResIcon("framing.png","Rectangle24_new.gif"));
         rectangleButton.setToolTipText("Rectangle");
-        rectangleButton.setBorder(BorderFactory.createEmptyBorder());
-        rectangleButton.setIcon(Constants.getIcon("Rectangle24_new.gif"));
-        rectangleButton.setSelectedIcon(Constants.getIcon("Rectangle_active24_new.gif"));
-        rectangleButton.setRolloverIcon(Constants.getIcon("Rectangle_rollover24_new.gif"));
+        //rectangleButton.setBorder(BorderFactory.createEmptyBorder());
+        //rectangleButton.setIcon(Constants.getIcon("Rectangle24_new.gif"));
+        //rectangleButton.setSelectedIcon(Constants.getIcon("Rectangle_active24_new.gif"));
+        //rectangleButton.setRolloverIcon(Constants.getIcon("Rectangle_rollover24_new.gif"));
         rectangleButton.setFocusable(false);
 
-        lineButton = new JToggleButton();
+        lineButton = new JToggleButton(highResIcon("line.png","Line24.gif"));
         lineButton.setToolTipText("Line");
-        lineButton.setBorder(BorderFactory.createEmptyBorder());
-        lineButton.setIcon(Constants.getIcon("Line24.gif"));
-        lineButton.setSelectedIcon(Constants.getIcon("Line_active24.gif"));
-        lineButton.setRolloverIcon(Constants.getIcon("Line_rollover24.gif"));
+        //lineButton.setBorder(BorderFactory.createEmptyBorder());
+        //lineButton.setIcon(loadIcon("line.png","Line24.gif"));
+        //lineButton.setSelectedIcon(loadIcon("line.png","Line_active24.gif"));
+        //lineButton.setRolloverIcon(loadIcon("line.png","Line_rollover24.gif"));
         lineButton.setFocusable(false);
 
-        deleteButton = new JToggleButton();
+        deleteButton = new JToggleButton(highResIcon("delete.png","Delete24.gif"));
         deleteButton.setToolTipText("Delete");
-        deleteButton.setBorder(BorderFactory.createEmptyBorder());
-        deleteButton.setIcon(Constants.getIcon("Delete24.gif"));
-        deleteButton.setSelectedIcon(Constants.getIcon("Delete_active24.gif"));
-        deleteButton.setRolloverIcon(Constants.getIcon("Delete_rollover24.gif"));
+        //deleteButton.setBorder(BorderFactory.createEmptyBorder());
+        //deleteButton.setIcon(loadIcon("delete.png","Delete24.gif"));
+        //deleteButton.setSelectedIcon(loadIcon("delete.png","Delete_active24.gif"));
+        //deleteButton.setRolloverIcon(loadIcon("delete.png","Delete_rollover24.gif"));
         deleteButton.setFocusable(false);
 
-        deleteAllButton = new JButton();
+        deleteAllButton = new JButton(highResIcon("deleteall.png","Delete_all16.gif"));
         deleteAllButton.setToolTipText("Delete all");
-        deleteAllButton.setBorder(BorderFactory.createEmptyBorder());
-        deleteAllButton.setIcon(Constants.getIcon("Delete_all16.gif"));
-        deleteAllButton.setSelectedIcon(Constants.getIcon("Delete_all_active16.gif"));
+        //deleteAllButton.setBorder(BorderFactory.createEmptyBorder());
+        //deleteAllButton.setIcon(loadIcon("deleteall.png","Delete_all16.gif"));
+        //deleteAllButton.setSelectedIcon(loadIcon("deleteall.png","Delete_all_active16.gif"));
         deleteAllButton.setFocusable(false);
 
         ButtonGroup modeButtons = new ButtonGroup();
@@ -235,18 +236,18 @@ public class PaintControls extends GradientPanel {
         modeButtons.add(deleteButton);
 
         // create whiteboard controls
-        whiteboardEnable = new RollOverToggleButton(Constants.getIcon("Edit24.gif"));
-        whiteboardEnable.setMargin(new Insets(0, 0, 0, 0));
+        whiteboardEnable = new JToggleButton(highResIcon("edit.png","Edit24.gif"));
+        //whiteboardEnable.setMargin(new Insets(0, 0, 0, 0));
         whiteboardEnable.setActionCommand("switch");
         whiteboardEnable.setToolTipText("Switch between desktop and whiteboard");
         whiteboardEnable.setFocusable(false);
 
-        whiteboardPrevious = new RollOverButton(Constants.getIcon("Back24.gif"));
+        whiteboardPrevious = new JButton(highResIcon("up.png","Back24.gif"));
         whiteboardPrevious.setActionCommand("previous");
         whiteboardPrevious.setToolTipText("previous whiteboard page");
         whiteboardPrevious.setFocusable(false);
 
-        whiteboardNext = new RollOverButton(Constants.getIcon("Forward24.gif"));
+        whiteboardNext = new JButton(highResIcon("down.png","Forward24.gif"));
         whiteboardNext.setActionCommand("next");
         whiteboardNext.setToolTipText("next whiteboard page");
         whiteboardNext.setFocusable(false);
@@ -497,5 +498,11 @@ public class PaintControls extends GradientPanel {
         default:
             break;
         }
+    }
+    @Override
+    public Dimension getPreferredSize() {
+    	Dimension dim = super.getPreferredSize();
+    	dim.setSize(Math.max(60, dim.getWidth()),dim.getHeight());
+    	return dim;
     }
 }

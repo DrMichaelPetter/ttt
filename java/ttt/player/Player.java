@@ -52,6 +52,7 @@ import javax.swing.Box;
 import javax.swing.BoxLayout;
 import javax.swing.ButtonGroup;
 import javax.swing.Icon;
+import javax.swing.JButton;
 import javax.swing.JComboBox;
 import javax.swing.JComponent;
 import javax.swing.JFrame;
@@ -63,6 +64,7 @@ import javax.swing.JPopupMenu;
 import javax.swing.JRadioButtonMenuItem;
 import javax.swing.JScrollPane;
 import javax.swing.JSplitPane;
+import javax.swing.JToggleButton;
 import javax.swing.border.EmptyBorder;
 import javax.swing.event.InternalFrameAdapter;
 import javax.swing.event.InternalFrameEvent;
@@ -244,7 +246,7 @@ public class Player extends JInternalFrame {
         });
 
         // fullscreen
-        final AbstractButton fullscreenButton = new RollOverToggleButton(Constants.getIcon("Fullscreen2_24.png"));
+        final AbstractButton fullscreenButton = new JToggleButton(Constants.highResIcon("fullscreen.png","Fullscreen2_24.png"));
         fullscreenButton.setActionCommand(Recording.FULLSCREEN);
         fullscreenButton.setToolTipText("enable/disable fullscreen mode");
         fullscreenButton.addActionListener(new ActionListener() {
@@ -270,7 +272,6 @@ public class Player extends JInternalFrame {
             controlPanel.add(videoButton);
             controlPanel.add(Box.createRigidArea(new Dimension(10, 0)));
         }
-        controlPanel.add(fullscreenButton);
         controlPanel.add(Box.createRigidArea(new Dimension(10, 0)));
         controlPanel.add(volumeButton);
         controlPanel.add(Box.createRigidArea(new Dimension(10, 0)));
@@ -516,7 +517,7 @@ public class Player extends JInternalFrame {
         }
 
         // Fullscreen Controls
-        panel.add(getFullscreenButton());
+        panel.add(getFullscreenButton(),0);
         panel.add(Box.createRigidArea(new Dimension(0, 10)));
 
         panel.add(getReconnectButton(connection));
@@ -573,10 +574,10 @@ public class Player extends JInternalFrame {
         if (fullscreenButton != null)
             return fullscreenButton;
 
-        final AbstractButton button = new RollOverToggleButton(Constants.getIcon("Fullscreen2_24.png"));
+        final AbstractButton button = new JToggleButton(Constants.highResIcon("fullscreen.png","Fullscreen2_24.png"));
         fullscreenButton = button;
-        button.setMargin(new Insets(0, 0, 0, 0));
-        button.setBorder(BorderFactory.createLoweredBevelBorder());
+        //button.setMargin(new Insets(0, 0, 0, 0));
+        //button.setBorder(BorderFactory.createLoweredBevelBorder());
         button.setToolTipText("enable/disable fullscreen mode");
 
         // avoid focus lost (of main component) in java 1.6
@@ -591,9 +592,9 @@ public class Player extends JInternalFrame {
     }
 
     private Component getReconnectButton(final Connection connection) {
-        final AbstractButton button = new RollOverButton(Constants.getIcon("Refresh24.gif"));
-        button.setMargin(new Insets(0, 0, 0, 0));
-        button.setBorder(BorderFactory.createLoweredBevelBorder());
+        final AbstractButton button = new JButton(Constants.highResIcon("refresh.png","Refresh24.gif"));
+        //button.setMargin(new Insets(0, 0, 0, 0));
+        //button.setBorder(BorderFactory.createLoweredBevelBorder());
         button.setToolTipText("reconnect");
 
         // avoid focus lost (of main component) in java 1.6

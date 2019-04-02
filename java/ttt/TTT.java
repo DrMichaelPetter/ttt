@@ -1197,6 +1197,9 @@ public class TTT extends JFrame {
 	}
 
 	public void showTTT() {
+		Font f = new Font("sans-serif", Font.PLAIN, 12);
+		UIManager.put("Menu.font", f);
+		UIManager.put("MenuItem.font", f);
 		// show and maximize frame
 		if (!isVisible()) {
 			// set size (if user de-maximizes)

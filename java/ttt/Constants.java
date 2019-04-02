@@ -34,7 +34,10 @@ import java.net.MalformedURLException;
 import java.net.URL;
 import java.awt.*;
 
+import javax.swing.Icon;
 import javax.swing.ImageIcon;
+
+import ttt.player.PaintControls;
 
 public class Constants {
 
@@ -561,6 +564,25 @@ public class Constants {
 			return createBrokenIcon();
 		} 
 	}
+    /**
+     * new High Res icons with fallback
+     * @param highres
+     * @param backup
+     * @return
+     */
+    public static Icon highResIcon(String highres, String backup) {
+    	URL url = PaintControls.class.getResource("/"+highres);
+    	if (url!=null) try {						
+			ImageIcon icon = new ImageIcon(url);
+			if(icon.getImage() == null){
+				throw new IOException();
+			}			
+			return icon;
+		}  catch (IOException e) {
+			
+		}
+    	return Constants.getIcon(backup);
+    }
     
     /**
      * Generates a 16x16 icon 

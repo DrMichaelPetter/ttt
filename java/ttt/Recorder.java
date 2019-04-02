@@ -58,6 +58,7 @@ import ttt.messages.MessageConsumer;
 import ttt.messages.WhiteboardMessage;
 import ttt.record.LectureProfile;
 import ttt.video.*;
+import static ttt.Constants.highResIcon;
 
 
 public class Recorder implements MessageConsumer, Closeable {
@@ -193,9 +194,12 @@ public class Recorder implements MessageConsumer, Closeable {
         final String STOP = "stop recording";
         final String PLAY = "play";
 
-        final JButton recordButton = new RollOverButton(Constants.getIcon("Record24.png"), RECORD);
-        final JButton stopButton = new RollOverButton(Constants.getIcon("Stop24.gif"), STOP);
-        final JButton playButton = new RollOverButton(Constants.getIcon("Play24.gif"), PLAY);
+        final JButton recordButton = new JButton(highResIcon("record.png","Record24.png"));
+        recordButton.setActionCommand(RECORD);
+        final JButton stopButton = new JButton(highResIcon("stop.png","Stop24.gif"));
+        stopButton.setActionCommand(STOP);
+        final JButton playButton = new JButton(highResIcon("play.png","Play24.gif"));
+        playButton.setActionCommand(PLAY);
               
         recordButton.setEnabled(out == null);
         stopButton.setEnabled(out != null);
@@ -306,7 +310,8 @@ public class Recorder implements MessageConsumer, Closeable {
         final Icon record_icon = Constants.getIcon("Record24.png");
         final Icon stop_icon = Constants.getIcon("Stop24.gif");
 
-        final JButton recordButton = new RollOverButton(record_icon, RECORD);
+        final JButton recordButton = new JButton(record_icon);
+        recordButton.setActionCommand(RECORD);
 
         recordButton.setEnabled(out == null);
 
