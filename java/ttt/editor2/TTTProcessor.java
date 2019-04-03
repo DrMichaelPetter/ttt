@@ -274,10 +274,12 @@ public class TTTProcessor {
 		
 		//add the saved messages
 		if(firstWhiteboardMessage != null){
-		firstWhiteboardMessage.setTimestamp(0);
-		firstCursorMessage.setTimestamp(0);
-		messages.add(1, firstWhiteboardMessage);
-		messages.add(2, firstCursorMessage);
+			firstWhiteboardMessage.setTimestamp(0);
+			messages.add(1, firstWhiteboardMessage);
+			if (firstCursorMessage !=null){ 
+				firstCursorMessage.setTimestamp(0);
+				messages.add(2, firstCursorMessage);
+			}
 		}
 		
 		messages.add(last);
@@ -285,7 +287,7 @@ public class TTTProcessor {
 		recording.setMessages(messages);
 		
 		for(Message m : messages){
-			System.out.println("what's going on? " +  Editor2.getStringFromTime( m.getTimestamp()) + " . damn " + m.toString());
+			//System.out.println("what's going on? " +  Editor2.getStringFromTime( m.getTimestamp()) + " . damn " + m.toString());
 		}
 		
 		

@@ -104,7 +104,7 @@ public class JSAAudioRecorder extends Thread implements IAudioRecorder {
     public static String availableInputs(){
     	String ret="[";
     	for (Mixer.Info info: AudioSystem.getMixerInfo()){
-            TargetDataLine tdl = null;    		
+            TargetDataLine tdl = null;
     		for (int i = 0; i < audioFormats.length; i++) {
                 DataLine.Info in = new DataLine.Info(TargetDataLine.class, audioFormats[i]);
                 if (AudioSystem.isLineSupported(in)) {

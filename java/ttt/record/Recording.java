@@ -52,6 +52,7 @@ import ttt.ProtocolPreferences;
 import ttt.TTT;
 import ttt.audio.AudioVideoPlayer;
 import ttt.audio.VolumeControl;
+import ttt.messages.HextileMessage;
 import ttt.gui.GraphicsContext;
 import ttt.gui.Index;
 import ttt.gui.IndexEntry;
@@ -1116,7 +1117,8 @@ public class Recording extends MessageProducerAdapter implements Runnable,
 	 ******************************************************************************************************************/
 	public static void main(String[] args) {
 		// message_sizes(args);
-		color_histogram(args);
+		// color_histogram(args);
+		debug_recording(args);
 	}
 
 	public static void color_histogram(String[] args) {
@@ -1164,6 +1166,36 @@ public class Recording extends MessageProducerAdapter implements Runnable,
 					System.out.println();
 
 				}
+
+			} catch (IOException e) {
+				// TODO Auto-generated catch block
+				e.printStackTrace();
+			}
+
+		}
+		System.exit(0);
+	}
+	public static void debug_recording(String[] args) {
+
+		TTT.verbose = false;
+
+		for (String arg : args) {
+			try {
+				Recording recording = new Recording(arg, false);
+				
+				System.out.println("Recorded Desktop with dimensions: "+recording.prefs.framebufferWidth+"x"+recording.prefs.framebufferHeight);
+				System.out.println("# of recorded messages is "+recording.messages.size());
+				final int [] i= { 0 };
+				recording.messages.getMessages().stream()
+					.forEach(x -> { 
+						System.out.print((++i[0]) +". message ("+x.getTimestamp()/1000.0+" secs): "+x.getClass()+" of size "+x.getSize());
+						if (x instanceof HextileMessage) {
+							HextileMessage m = (HextileMessage)x;
+							System.out.print(" = "+ m.getBounds().width+"x"+m.getBounds().height);
+						}
+						System.out.println();
+					});
+				System.out.println();
 
 			} catch (IOException e) {
 				// TODO Auto-generated catch block
