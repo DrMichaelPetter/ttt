@@ -1,6 +1,6 @@
 #!/bin/bash
 vncserver -kill :1
-vncserver -geometry 960x720
+vncserver -geometry 1400x1050
 command -v kdialog || {
     command -v zenity || { echo 'VNC started'; exit 1 ; }
     zenity --info --text="VNC started"
