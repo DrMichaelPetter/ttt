@@ -266,8 +266,8 @@ public class PaintControls extends GradientPanel {
         add(textButton);
         add(freeButton);
         add(highlightButton);
-        add(lineButton);
         add(rectangleButton);
+        add(lineButton);
         add(deleteButton);
         add(Box.createRigidArea(new Dimension(0, 10)));
         add(deleteAllButton);

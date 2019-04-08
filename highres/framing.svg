@@ -130,7 +130,7 @@
    pagecolor="#ffffff"
    id="base"
    inkscape:zoom="4.1321553"
-   inkscape:cx="-10.493322"
+   inkscape:cx="-64.097309"
    inkscape:cy="50.383841"
    inkscape:window-x="2560"
    inkscape:window-y="0"
@@ -168,7 +168,7 @@
 	</ns:sfw>
 <rdf:RDF><cc:Work
      rdf:about=""><dc:format>image/svg+xml</dc:format><dc:type
-       rdf:resource="http://purl.org/dc/dcmitype/StillImage" /><dc:title></dc:title></cc:Work></rdf:RDF></metadata>
+       rdf:resource="http://purl.org/dc/dcmitype/StillImage" /><dc:title /></cc:Work></rdf:RDF></metadata>
 <rect
    id="_x3C_Sezione_x3E_"
    width="119.84724"
@@ -2698,7 +2698,7 @@ I7BgB3PmD9bJTCbTBbNgZ/AGaISdL6Yc65x/TP+FnsAnYnOwhS8rjv8fGryapg==
    height="56.768112"
    width="24.000011"
    id="rect2785"
-   style="opacity:1;fill:none;fill-opacity:1;fill-rule:nonzero;stroke:#0000ff;stroke-width:1;stroke-linecap:round;stroke-linejoin:round;stroke-miterlimit:4;stroke-dasharray:none;stroke-opacity:1"
+   style="opacity:1;fill:none;fill-opacity:1;fill-rule:nonzero;stroke:#0000ff;stroke-width:4;stroke-linecap:round;stroke-linejoin:round;stroke-miterlimit:4;stroke-dasharray:none;stroke-opacity:1"
    transform="rotate(90)" /><rect
    ry="1.2500001"
    rx="1.2500001"
@@ -2707,5 +2707,5 @@ I7BgB3PmD9bJTCbTBbNgZ/AGaISdL6Yc65x/TP+FnsAnYnOwhS8rjv8fGryapg==
    height="56.768112"
    width="24.000011"
    id="rect2785-3"
-   style="opacity:1;fill:none;fill-opacity:1;fill-rule:nonzero;stroke:#ff0000;stroke-width:1;stroke-linecap:round;stroke-linejoin:round;stroke-miterlimit:4;stroke-dasharray:none;stroke-opacity:1"
+   style="opacity:1;fill:none;fill-opacity:1;fill-rule:nonzero;stroke:#ff0000;stroke-width:4;stroke-linecap:round;stroke-linejoin:round;stroke-miterlimit:4;stroke-dasharray:none;stroke-opacity:1"
    transform="rotate(90)" /></svg>
