@@ -409,16 +409,28 @@ public class PaintControls extends GradientPanel {
                     }
                 }
                 else if (event.getSource() == whiteboardPrevious){
-                    paintListener.previousWhiteboard();
-                    if(mouseButton.isSelected()){
-                    	freeButton.setSelected(true);
-                    }  
+                    if (whiteboardEnable.isSelected()) {
+                    	paintListener.previousWhiteboard();
+                    	if(mouseButton.isSelected()){
+                    		freeButton.setSelected(true);
+                    	}
+                    }
+                    else
+                    {
+                    	paintListener.triggerPageUp();
+                    }
                 }
                 else if (event.getSource() == whiteboardNext){
-                    paintListener.nextWhiteboard();
-                    if(mouseButton.isSelected()){
-                    	freeButton.setSelected(true);
-                    } 
+                	if (whiteboardEnable.isSelected()) {
+                		paintListener.nextWhiteboard();
+                		if(mouseButton.isSelected()){
+                			freeButton.setSelected(true);
+                		}
+                	}
+                	else
+                	{
+                		paintListener.triggerPageDown();
+                	}
                 }
             }
         };

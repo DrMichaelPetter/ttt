@@ -431,6 +431,15 @@ public class PaintListener extends RFBKeyAndMouseListener implements KeyEventDis
     }
     
     
+    public void triggerPageDown() {
+    	
+    	super.keyPressed(new KeyEvent(player,KeyEvent.KEY_PRESSED,System.currentTimeMillis(),0,KeyEvent.VK_PAGE_DOWN,KeyEvent.CHAR_UNDEFINED));
+    }
+    
+    public void triggerPageUp() {
+    	super.keyPressed(new KeyEvent(player,KeyEvent.KEY_PRESSED,System.currentTimeMillis(),0,KeyEvent.VK_PAGE_UP,KeyEvent.CHAR_UNDEFINED));
+    }
+    
     @Override
     public void keyPressed(KeyEvent evt) {
 
