@@ -417,6 +417,7 @@ public class PaintControls extends GradientPanel {
                     }
                     else
                     {
+                    	paintListener.setPaintMode(Constants.AnnotationDeleteAll);
                     	paintListener.triggerPageUp();
                     }
                 }
@@ -429,6 +430,7 @@ public class PaintControls extends GradientPanel {
                 	}
                 	else
                 	{
+                		paintListener.setPaintMode(Constants.AnnotationDeleteAll);
                 		paintListener.triggerPageDown();
                 	}
                 }
