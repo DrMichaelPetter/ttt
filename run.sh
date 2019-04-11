@@ -10,14 +10,27 @@ do
     PRG="$newprg"
 done
 PRG=${PRG%/*}
-echo Changing to application folder is ${PRG}
+echo Changing to application folder ${PRG}
 cd ${PRG}
-MACHINE_TYPE=`uname -m`
-if [ ${MACHINE_TYPE} == 'x86_64' ]; then
-    echo Executing 64 bit version
-    LD_LIBRARY_PATH=linux64 java -Xmx4096M -jar ttt.jar
-else
-    echo Executing 32 bit version
-    LD_LIBRARY_PATH=linux32 java -Xmx1024M -jar ttt.jar
-fi
+# Uncomment template to create desired setting
+# cd linuxscripts
+#
+# # 4:3 format presentation on 720p (16:9) beamer
+# # bash vncserver43.sh
+# # bash beamer720p.sh # make sure to use the correct screen identifiers
+#
+# # 4:3 format presentation on XGA (4:3) beamer
+# # bash vncserver43.sh
+# # bash beamerXGA.sh # make sure to use the correct screen identifiers
+#
+# bash disable.sh # disable touch input
+# cd ..
+
+# adjust font and fontsize to your liking
+LD_LIBRARY_PATH=linux64 java  -Dswing.plaf.metal.controlFont="DejaVu Sans Mono Book-20" -Xmx4096M -jar ttt.jar
+
+# cd linuxscripts
+# bash nativeResolution.sh
+# cd ..
+
 cd -

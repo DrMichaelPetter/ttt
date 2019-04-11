@@ -105,7 +105,7 @@ import ttt.record.LectureProfileDialog;
 import ttt.record.Recording;
 
 public class TTT extends JFrame {
-	static final String version = "08.04.2019";
+	static final String version = "11.04.2019";
 
 	public static boolean debug = !true;
 	public static boolean verbose = true;
@@ -1197,9 +1197,6 @@ public class TTT extends JFrame {
 	}
 
 	public void showTTT() {
-		Font f = new Font("sans-serif", Font.PLAIN, 12);
-		UIManager.put("Menu.font", f);
-		UIManager.put("MenuItem.font", f);
 		// show and maximize frame
 		if (!isVisible()) {
 			// set size (if user de-maximizes)
