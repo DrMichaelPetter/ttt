@@ -1608,6 +1608,7 @@ public class PostProcessorPanel extends GradientPanel {
             	if (x==0) x=recording.prefs.framebufferWidth;
             	TTT.userPrefs.putInt("VideoResolution", x);
             	int y = (int)(x * recording.prefs.framebufferHeight)/recording.prefs.framebufferWidth;
+            	if (y%2==1) y++; // y-resolution needs to be a power of 2 due to h264
             	int cropx = 0, cropy=0;
             	int cropw=x, croph=y;
             	System.out.println("  creating MP4-Video with resolution "+x+"x"+y);

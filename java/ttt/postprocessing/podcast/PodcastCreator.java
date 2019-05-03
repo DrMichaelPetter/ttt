@@ -26,6 +26,7 @@ import java.awt.event.ActionEvent;
 import java.awt.event.ActionListener;
 import java.io.File;
 import java.io.IOException;
+import java.io.InputStream;
 import java.util.Scanner;
 
 import javax.imageio.ImageIO;
@@ -255,7 +256,7 @@ public class PodcastCreator {
 			//create window movie using ffmpeg
 			//write scaled window image
 			ImageIO.write(ImageCreator.getScaledInstance(recording.getGraphicsContext().getScreenshot(), resolutionWidth, resolutionHeight, RenderingHints.VALUE_INTERPOLATION_BICUBIC, true), "png", windowImageFile);
-			windowMovieFile.delete();
+			if (!TTT.debug) windowMovieFile.delete();
 			exec.createListenerStream();
 			j = exec.exec(new String[] {
                 ffmpegCmd,
@@ -278,10 +279,12 @@ public class PodcastCreator {
             });
 			if (j != 0 || windowMovieFile.length() == 0) {
 				//error while creating window movie
+				if (!TTT.debug) {
 				windowMovieFile.delete();
 				outMovieFile.delete();
 				outMovieTmpFile.delete();
 				windowImageFile.delete();
+				}
 				if(TTT.verbose){
 				System.out.println("Unable to create window movie using ffmpeg:");
 				System.out.println(exec.getListenerStream());}
@@ -315,10 +318,12 @@ public class PodcastCreator {
 				j = exec.exec(line);
 				if (j != 0 || outMovieTmpFile.length() == 0) {
 					//error while appending the slideMovie to the output file
+					if (!TTT.debug) {
 					windowMovieFile.delete();
 					outMovieFile.delete();
 					outMovieTmpFile.delete();
 					windowImageFile.delete();
+					}
 					String cmdline="";
 					for (String s:line) cmdline+=s+" ";
 					if(TTT.verbose){
@@ -329,14 +334,16 @@ public class PodcastCreator {
 				}
 			}
 			//replace outMovieFile by outMovieFileTmp
-			outMovieFile.delete();
+			if (!TTT.debug) outMovieFile.delete();
 			if (i < recording.messages.size()) {
 				outMovieTmpFile.renameTo(outMovieFile);
 			}
 		}
-		windowMovieFile.delete();
-		outMovieFile.delete();
-		windowImageFile.delete();
+		if (!TTT.debug) {
+			windowMovieFile.delete();
+			outMovieFile.delete();
+			windowImageFile.delete();
+		}
 		
 		if(TTT.verbose){
 		//audio encoding with ffmpeg. The audio stream must be converted via aac to achieve ipod compatibility
@@ -392,8 +399,11 @@ public class PodcastCreator {
 			System.out.println("debugging ffmpeg line: "+cmdline);
     }
     
-		j = exec.exec(line);
-		outMovieTmpFile.delete();	
+    	Process p = Runtime.getRuntime().exec(line);
+    	j=p.waitFor();
+    	
+		
+		if (!TTT.debug) outMovieTmpFile.delete();	
 		if (!batch) {
 			timer.stop();			
 			if (ShowProgressmonitor&&progressMonitor.isCanceled()) {
@@ -415,8 +425,8 @@ public class PodcastCreator {
 			String cmdline="";
 			for (String s:line) cmdline+=s+" ";
 			if(TTT.verbose){
-			System.out.println("Unable add audio stream using the command:");
-			System.out.println(cmdline);
+			System.err.println("Unable add audio stream using the command:");
+			System.err.println(cmdline);
 			System.out.println(exec.getListenerStream());
 			}else
 				outMovieFile.delete();

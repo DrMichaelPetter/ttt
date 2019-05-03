@@ -105,7 +105,7 @@ import ttt.record.LectureProfileDialog;
 import ttt.record.Recording;
 
 public class TTT extends JFrame {
-	static final String version = "11.04.2019";
+	static final String version = "03.05.2019";
 
 	public static boolean debug = !true;
 	public static boolean verbose = true;
@@ -1519,6 +1519,8 @@ public class TTT extends JFrame {
 				case 'n':
 					enabledNativeLookAndFeel = false;
 					break;
+				case 'd':
+					setDebug(true);
 				case 'v':
 				    System.out.println("  Verbose mode enabled!");
 				    setVerbose(true);
