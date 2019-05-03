@@ -1,4 +1,5 @@
 !include "MUI.nsh"
+!addplugindir nsis
 
 Icon nsis/ttt.ico
 Name "TeleTeaching Tool"
@@ -15,52 +16,36 @@ BrandingText " "
 
 
 
-;Page directory
-;Page instfiles
+!define JRE_VERSION "12.0"
+!define JRE_URL "https://github.com/ojdkbuild/ojdkbuild/releases/download/12.0.1-1/java-12-openjdk-12.0.1.12-1.windows.ojdkbuild.x86_64.msi"
 
-;steal most recent URLs from http://www.oracle.com/technetwork/java/javase/downloads/jdk8-downloads-2133151.html
-!define JRE_VERSION "1.7"
-!define JREX_URL "ttp://javadl.sun.com/webapps/download/AutoDL?BundleId=81821"
-!define JREI_URL "http://download.oracle.com/otn-pub/java/jdk/8u152-b16/aa0333dd3019491ca4f6ddbe78cdb6d0/jdk-8u152-windows-i586.exe"
-Var JRE_URL
 
 Function .onInit
-
   !insertmacro MUI_LANGDLL_DISPLAY
-  ; Install to the correct directory on 32 bit or 64 bit machines
-  IfFileExists $WINDIR\SYSWOW64\*.* Is64bit Is32bit
-Is32bit:
-    SetRegView 32
-    StrCpy $JRE_URL "${JREI_URL}"
-    GOTO End32Bitvs64BitCheck
- 
-Is64bit:
     SetRegView 64
-    StrCpy $JRE_URL "${JREX_URL}"
- 
-End32Bitvs64BitCheck:
-
 FunctionEnd
+
 Function DetectJRE
-  ReadRegStr $2 HKLM "SOFTWARE\JavaSoft\Java Runtime Environment" \
+  ReadRegStr $2 HKLM "SOFTWARE\JavaSoft\JDK" \
              "CurrentVersion"
   StrCmp $2 ${JRE_VERSION} done
- 
+
   Call DownloadJRE
- 
+
   done:
 FunctionEnd
 Function DownloadJRE
         MessageBox MB_OK "TTT uses Java ${JRE_VERSION}, it will now \
-                         be downloaded and installed"
- 
-        StrCpy $2 "$TEMP\Java Runtime Environment.exe"
-        nsisdl::download /TIMEOUT=30000 $JRE_URL $2
+                         be downloaded and installed -- "
+
+        StrCpy $2 "$TEMP\JDK.msi"
+        inetc::get "${JRE_URL}" $2 /END
         Pop $R0 ;Get the return value
-                StrCmp $R0 "success" +3
-                MessageBox MB_OK "Download failed: $R0"
-                Quit
-        ExecWait $2
+        StrCmp $R0 "OK" dlok
+          MessageBox MB_OK "Download failed: $R0"
+          Abort
+      dlok: 
+        ExecWait '"msiexec" /i "$TEMP\JDK.msi" ADDLOCAL=all'
         Delete $2
 FunctionEnd
 
@@ -85,8 +70,8 @@ Function GetJRE
   IfErrors 0 JreFound
  
   ClearErrors
-  ReadRegStr $R1 HKLM "SOFTWARE\JavaSoft\Java Runtime Environment" "CurrentVersion"
-  ReadRegStr $R0 HKLM "SOFTWARE\JavaSoft\Java Runtime Environment\$R1" "JavaHome"
+  ReadRegStr $R1 HKLM "SOFTWARE\JavaSoft\JDK" "CurrentVersion"
+  ReadRegStr $R0 HKLM "SOFTWARE\JavaSoft\JDK\$R1" "JavaHome"
   StrCpy $R0 "$R0\bin\javaw.exe"
   IfFileExists $R0 JreFound
  
