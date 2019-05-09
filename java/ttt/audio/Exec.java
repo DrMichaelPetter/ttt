@@ -29,6 +29,7 @@ import java.net.URL;
 import java.net.URLDecoder;
 
 import ttt.Constants;
+import ttt.TTT;
 
 /**
  * Allows save and platform independent execution of commands. <br>
@@ -174,8 +175,12 @@ public class Exec {
 	 * Extends exec() of the class Runtime by cleaning the output- and error-stream of the executed process in order to avoid that the process goes idle.<br>
 	 */
 	public int exec(String[] cmd) throws Exception {
-		//System.out.println(" ... issuing command " +java.util.Arrays.deepToString(cmd));
-		process = Runtime.getRuntime().exec(cmd);
+		String cmdline="";
+		for (String s:cmd) cmdline+=s+" ";
+		if (TTT.debug) System.out.println(" ... issuing command "+cmdline);
+
+		process = new ProcessBuilder(cmd).start();
+		//process = Runtime.getRuntime().exec(cmd);
 		return waitFor();
 	}
 	

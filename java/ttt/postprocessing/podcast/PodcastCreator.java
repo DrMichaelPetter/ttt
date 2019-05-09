@@ -166,6 +166,11 @@ public class PodcastCreator {
       return createPodcast(recording, resolutionWidth, resolutionHeight, FRAMES_PER_SEC, batch, ShowProgressmonitor,resolutionWidth,resolutionHeight,0,0);
 	}
 	
+	static boolean windows=System.getProperty("os.name").toLowerCase().indexOf("win") >= 0;
+	private static String file2str(String filename) {
+		if (!windows) return filename.replace(" ", "\\ ");
+		return "\""+filename+"\"";
+	}
 	
 	/**
 	 * Creates podcast
@@ -250,9 +255,6 @@ public class PodcastCreator {
 			if (ShowProgressmonitor && !batch && i < recording.messages.size()) {
 				progressMonitor.setProgress(i);
 			}
-			//if(TTT.verbose){
-			//	System.out.println("   Message (" + i + "/" + recording.messages.size() + ")");
-			//}
 			//create window movie using ffmpeg
 			//write scaled window image
 			ImageIO.write(ImageCreator.getScaledInstance(recording.getGraphicsContext().getScreenshot(), resolutionWidth, resolutionHeight, RenderingHints.VALUE_INTERPOLATION_BICUBIC, true), "png", windowImageFile);
@@ -263,20 +265,18 @@ public class PodcastCreator {
                 "-loop", "1",
                 "-r", String.valueOf(framesPerSec),
                 "-pix_fmt", "rgb24",
-                "-i", windowImageFile.getPath().replace(" ", "\\ "),
+                "-i", file2str(windowImageFile.getPath()),
                 "-vcodec", "mpeg4",
                 "-vframes", String.valueOf(vFrames),
                 "-s",
                 croppedw + "x" + croppedh,
-                //resolutionWidth + "x" + resolutionHeight,
-                //"100x100",
                 "-y",
                 "-vf",
                 "crop="+croppedw+":"+croppedh+":"+croppedx+":"+croppedy,
-                //"crop=100:100:10:50",
                 "-b:v", String.valueOf(34)+"k",
-                windowMovieFile.getPath().replace(" ", "\\ ")
+                file2str(windowMovieFile.getPath())
             });
+			
 			if (j != 0 || windowMovieFile.length() == 0) {
 				//error while creating window movie
 				if (!TTT.debug) {
@@ -306,7 +306,13 @@ public class PodcastCreator {
 				return false;
 			}
 			if (outMovieFile.length() == 0) {
-				//the first window movie can renamed directly to output movie.
+				if (TTT.debug) {
+					System.out.println(outMovieFile.getAbsolutePath() + " has size "+outMovieFile.length());
+					System.out.println("First frame assumed; skipping concatenation");
+					System.out.println(windowMovieFile.getAbsolutePath() + " has size "+windowMovieFile.length());
+					
+				}
+				//the first window movie can be renamed directly to output movie.
 				//NOTE: MP4Box uses fps=1 for the container format when vFrames=1 whereby the container frame rate and codec frame rate can differ when using frameRate != 1. That causes a wrong synchronized video and audio stream
 				outMovieTmpFile.delete();	//For renaming files on a windows system, the destination file may not exist
 				windowMovieFile.renameTo(outMovieTmpFile);
@@ -314,7 +320,14 @@ public class PodcastCreator {
 				//append the created window movie (windowMovieFile) to the output movie (outMovieFile) using MP4Box
 				//NOTE: appending slideMovieFile to outMovieFile directly via "MP4Box -cat slideMovieFile.getPath() outMovieFile.getPath()" causes renaming problems in some cases. Thus outMovieTmpFile is used
 				exec.createListenerStream();
-				String [] line = new String[] { MP4BOX, "-cat", windowMovieFile.getPath(), outMovieFile.getPath(), "-out", outMovieTmpFile.getPath()};
+				String [] line = new String[] { 
+						mp4BoxCmd, 
+						"-cat", 
+						windowMovieFile.getPath(), 
+						outMovieFile.getPath(), 
+						"-out", 
+						outMovieTmpFile.getPath()
+						};
 				j = exec.exec(line);
 				if (j != 0 || outMovieTmpFile.length() == 0) {
 					//error while appending the slideMovie to the output file
@@ -336,7 +349,9 @@ public class PodcastCreator {
 			//replace outMovieFile by outMovieFileTmp
 			if (!TTT.debug) outMovieFile.delete();
 			if (i < recording.messages.size()) {
+				outMovieFile.delete();
 				outMovieTmpFile.renameTo(outMovieFile);
+				if (TTT.debug) System.out.println("renamed tmp to outfile");
 			}
 		}
 		if (!TTT.debug) {
@@ -384,23 +399,17 @@ public class PodcastCreator {
 		outMovieFile = recording.getFileBySuffix("mp4");
 		String[] line = new String[] {
 				ffmpegCmd,
-				"-i", audioFile.getPath().replace(" ", "\\ "),
-				"-i", outMovieTmpFile.getPath().replace(" ", "\\ "),
+				"-i", file2str(audioFile.getPath()),
+				"-i", file2str(outMovieTmpFile.getPath()),
 				"-strict","experimental",
 				"-c:a","aac",
 				"-b:a", "32k",
 				"-b:v", "32k",
 				"-y",
-				outMovieFile.getPath().replace(" ", "\\ ")
+				file2str(outMovieFile.getPath())
 			};
-    if (TTT.debug){
-			String cmdline="";
-			for (String s:line) cmdline+=s+" ";
-			System.out.println("debugging ffmpeg line: "+cmdline);
-    }
     
-    	Process p = Runtime.getRuntime().exec(line);
-    	j=p.waitFor();
+    	j=exec.exec(line);
     	
 		
 		if (!TTT.debug) outMovieTmpFile.delete();	
