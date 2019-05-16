@@ -789,8 +789,11 @@ public class Index {
                 	if (i+1<index.size()){
                 		timestamp += (index.get(i+1).getTimestamp()-timestamp)*.95;
                 	}
-               
-                recording.setTime(timestamp,false);
+            	boolean beginofslide = Boolean.parseBoolean(ttt.Experimental.Code.THUMBNAILATSTART.get());
+            	if (beginofslide)
+            		recording.setTime(indexEntry.getTimestamp());
+            	else
+            		recording.setTime(timestamp,false);
 
                 // create screenshot
                 Image screenshot = recording.graphicsContext.getScreenshotWithoutAnnotations();
