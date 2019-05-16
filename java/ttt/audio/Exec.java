@@ -177,7 +177,7 @@ public class Exec {
 	public int exec(String[] cmd) throws Exception {
 		String cmdline="";
 		for (String s:cmd) cmdline+=s+" ";
-		if (TTT.debug) System.out.println(" ... issuing command "+cmdline);
+		TTT.debug(" ... issuing command "+cmdline);
 
 		process = new ProcessBuilder(cmd).start();
 		//process = Runtime.getRuntime().exec(cmd);

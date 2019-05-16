@@ -1,6 +1,6 @@
 // TeleTeachingTool - Presentation Recording With Automated Indexing
 //
-// Copyright (C) 2003-2008 Peter Ziewer - Technische Universität München
+// Copyright (C) 2003-2008 Peter Ziewer - Technische Universitï¿½t Mï¿½nchen
 // 
 //    This file is part of TeleTeachingTool.
 //
@@ -25,15 +25,47 @@
 package ttt.audio;
 
 import javax.sound.sampled.AudioFormat;
+import javax.sound.sampled.AudioSystem;
 import javax.sound.sampled.Control;
 import javax.sound.sampled.LineListener;
 import javax.sound.sampled.LineUnavailableException;
 import javax.sound.sampled.TargetDataLine;
 import javax.sound.sampled.Control.Type;
+import javax.swing.JFrame;
+
+import ttt.Experimental;
+import ttt.TTT;
+
+import javax.sound.sampled.DataLine;
 
 
 public class TargetDataLineMonitor implements TargetDataLine {
+	private static final AudioFormat[] audioFormats = {
+            new AudioFormat(AudioFormat.Encoding.PCM_SIGNED, 22050.0F, 16, 1, 2, 22050.0F, false),
+            new AudioFormat(AudioFormat.Encoding.PCM_SIGNED, 11025.0F, 16, 1, 2, 11025.0F, false),
+            new AudioFormat(AudioFormat.Encoding.PCM_SIGNED, 44100.0F, 16, 1, 2, 44100.0F, false),
+            new AudioFormat(AudioFormat.Encoding.PCM_SIGNED, 8000.0F, 16, 1, 2, 8000.0F, false) };
+	public static void main(String[] args) throws Exception {
+		TTT.setDebug(true);
+		JFrame frame = new JFrame("Audio Volume Meter");
+		AudioMonitorPanel amp = new AudioMonitorPanel(true);
+        frame.add(amp);
 
+        frame.pack();
+        frame.setVisible(true);
+		
+		for (int i = 0; i < audioFormats.length; i++) {
+            DataLine.Info info = new DataLine.Info(TargetDataLine.class, audioFormats[i]);
+            if (AudioSystem.isLineSupported(info)) {
+                // try {
+                TargetDataLineMonitor targetDataLine = new TargetDataLineMonitor((TargetDataLine) AudioSystem.getLine(info),
+                        amp);
+                targetDataLine.open(audioFormats[i], targetDataLine.getBufferSize());
+                break;
+            }
+        }
+	}
+	
     public TargetDataLineMonitor(TargetDataLine targetDataLine, AudioMonitorPanel volumeLevelComponent) {
         this.targetDataLine = targetDataLine;
         this.volumeLevelComponent = volumeLevelComponent;
@@ -60,8 +92,11 @@ public class TargetDataLineMonitor implements TargetDataLine {
 
         if (volumeLevelComponent != null)
             volumeLevelComponent.setPeakPercentage(meanSampleValue * 2);
+        ttt.TTT.debug("Sample: "+meanSampleValue*100);
 
-	if (meanSampleValue<0.00000001) mutecounter++;
+        // (meanSampleValue<0.00000001) -- means absolute silence
+        double threshold=Double.parseDouble(Experimental.Code.MICTHRESHOLD.get());
+        if (meanSampleValue<threshold) mutecounter++;
         if (mutecounter>250){
         	mutecounter=0;
         	volumeLevelComponent.warnMuted();

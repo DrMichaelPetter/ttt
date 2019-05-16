@@ -175,12 +175,9 @@ public class Messages {
             in.close();
         }
 
-        if (TTT.verbose)
-            System.out.println(" " + messages.size() + " messages loaded.");
+        TTT.verbose(" " + messages.size() + " messages loaded.");
 
-        if (TTT.debug)
-            if (TTT.verbose)
-                System.out.println("raw framebuffer usage would be " + (long) total * recording.prefs.bytesPerPixel
+        TTT.debug("raw framebuffer usage would be " + (long) total * recording.prefs.bytesPerPixel
                         / 1024 / 1024 + " Mbytes messages (" + (total / 1024 / 1024) + " megapixels)");
 
         // delete all annotations at beginning (if needed)

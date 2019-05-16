@@ -98,7 +98,7 @@ public class PodcastCreator {
                 break;
             case "-debug":
                 TTT.verbose=true;
-                TTT.debug=true;
+                TTT.setDebug(true);
                 break;
             case "-crop":
                 String [] crop = args[i].split("\\+");
@@ -285,9 +285,8 @@ public class PodcastCreator {
 				outMovieTmpFile.delete();
 				windowImageFile.delete();
 				}
-				if(TTT.verbose){
-				System.out.println("Unable to create window movie using ffmpeg:");
-				System.out.println(exec.getListenerStream());}
+				TTT.verbose("Unable to create window movie using ffmpeg:");
+				TTT.verbose(exec.getListenerStream());
 				throw new IOException("unable to create window movie using ffmpeg");
 			}
 			if (ShowProgressmonitor & !batch && progressMonitor.isCanceled()) {
@@ -306,12 +305,12 @@ public class PodcastCreator {
 				return false;
 			}
 			if (outMovieFile.length() == 0) {
-				if (TTT.debug) {
-					System.out.println(outMovieFile.getAbsolutePath() + " has size "+outMovieFile.length());
-					System.out.println("First frame assumed; skipping concatenation");
-					System.out.println(windowMovieFile.getAbsolutePath() + " has size "+windowMovieFile.length());
+				
+				TTT.debug(outMovieFile.getAbsolutePath() + " has size "+outMovieFile.length());
+				TTT.debug("First frame assumed; skipping concatenation");
+				TTT.debug(windowMovieFile.getAbsolutePath() + " has size "+windowMovieFile.length());
 					
-				}
+				
 				//the first window movie can be renamed directly to output movie.
 				//NOTE: MP4Box uses fps=1 for the container format when vFrames=1 whereby the container frame rate and codec frame rate can differ when using frameRate != 1. That causes a wrong synchronized video and audio stream
 				outMovieTmpFile.delete();	//For renaming files on a windows system, the destination file may not exist
@@ -339,10 +338,10 @@ public class PodcastCreator {
 					}
 					String cmdline="";
 					for (String s:line) cmdline+=s+" ";
-					if(TTT.verbose){
-					System.out.println("Unable join slide movies using the command:");
-					System.out.println(cmdline);
-					System.out.println(exec.getListenerStream());}
+					
+						TTT.verbose("Unable join slide movies using the command:");
+						TTT.verbose(cmdline);
+						TTT.verbose(exec.getListenerStream());
 					throw new IOException("unable join slide movies using \n"+cmdline);
 				}
 			}
@@ -351,7 +350,7 @@ public class PodcastCreator {
 			if (i < recording.messages.size()) {
 				outMovieFile.delete();
 				outMovieTmpFile.renameTo(outMovieFile);
-				if (TTT.debug) System.out.println("renamed tmp to outfile");
+				TTT.debug("renamed tmp to outfile");
 			}
 		}
 		if (!TTT.debug) {

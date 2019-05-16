@@ -105,8 +105,13 @@ import ttt.record.LectureProfileDialog;
 import ttt.record.Recording;
 
 public class TTT extends JFrame {
-	static final String version = "09.05.2019";
-
+	static final String version = "16.05.2019";
+	public static void debug(Object out) {
+		if (debug) System.out.println(out);
+	}
+	public static void verbose(Object out) {
+		if (debug||verbose) System.out.println(out);
+	}
 	public static boolean debug = !true;
 	public static boolean verbose = true;
 

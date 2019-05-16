@@ -75,6 +75,7 @@
     <copy todir="${dist}"><fileset dir="${lib}"></fileset></copy>
     <copy todir="${dist}"><fileset dir="${native}"></fileset></copy>
     <copy todir="${dist}" file="run.sh" />
+    <copy todir="${dist}" file="experimental.sh" />
     <copy todir="${dist}"><fileset dir="linuxscripts"></fileset></copy> 
     <zip destfile="./ttt.zip" basedir="." includes="dist/*" update="true"/> 
   </target>
