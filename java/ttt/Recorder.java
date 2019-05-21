@@ -489,9 +489,10 @@ public class Recorder implements MessageConsumer, Closeable {
             out.close();
             out = null;
         }
+        if (file !=null)
             TTT.userPrefs.put("last_opened_recording", file.getCanonicalPath());
 
-            System.out.println("Recorder stop.");
+            TTT.verbose("Recorder stop.");
         }
     
 

@@ -490,6 +490,7 @@ public class Player extends JInternalFrame {
             if (lectureProfile.isRecordEnabled()) {
                 recorder = new Recorder(protocol, lectureProfile);
                 closeables.add(recorder);
+                TTT.debug("Adding recorder to closeables");
             }
         } catch (Exception e) {
             e.printStackTrace();
@@ -617,10 +618,13 @@ public class Player extends JInternalFrame {
 
     public void close() {
         // close everything
-        for (int i = 0; i < closeables.size(); i++)
+    	
+        for (Closeable c : closeables)
             try {
-                closeables.get(i).close();
-            } catch (Exception e) {}
+                c.close();
+            } catch (Exception e) {
+            	TTT.debug("Exeption while running over closables: "+e.toString());
+            }
         closeables.clear();
 
         dispose();
