@@ -96,7 +96,7 @@ Section ""
   File dist/ttt.jar
   File dist/jmf-2.1.1e.jar
   File dist/mp3plugin.jar
-  File dist/jsch-0.1.49.jar
+  File dist/jsch-0.1.55.jar
   File dist/itext-1.4.8.jar
   File dist/lti-civil.jar
   File dist/base64coder.jar
