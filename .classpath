@@ -5,7 +5,6 @@
 	<classpathentry kind="con" path="bin"/>
 	<classpathentry kind="con" path="lib"/>
 	<classpathentry kind="lib" path="lib/itext-1.4.8.jar"/>
-	<classpathentry kind="lib" path="lib/jsch-0.1.32-patched.jar"/>
 	<classpathentry kind="lib" path="lib/jmf-2.1.1e.jar"/>
 	<classpathentry kind="lib" path="lib/mp3plugin.jar"/>
 	<classpathentry kind="lib" path="lib/v4l4j.jar">
@@ -15,5 +14,6 @@
 	</classpathentry>
 	<classpathentry kind="lib" path="lib/lti-civil.jar"/>
 	<classpathentry kind="lib" path="lib/base64coder.jar"/>
+	<classpathentry kind="lib" path="lib/jsch-0.1.55.jar"/>
 	<classpathentry kind="output" path="bin"/>
 </classpath>

@@ -23,6 +23,7 @@ public class Experimental {
 	static Preferences experimentalRoot = TTT.userPrefs.node("experimental");
 	
 	public static enum Code {
+		SSHKEYSIZE("keysize","2048"),
 		MICTHRESHOLD("micthreshold","0.00000001"),
 		THUMBNAILATSTART("thumbnail at start","true");
 		

@@ -1,6 +1,6 @@
 // TeleTeachingTool - Presentation Recording With Automated Indexing
 //
-// Copyright (C) 2003-2008 Peter Ziewer - Technische Universität München
+// Copyright (C) 2003-2008 Peter Ziewer - Technische Universitï¿½t Mï¿½nchen
 // 
 //    This file is part of TeleTeachingTool.
 //
@@ -73,9 +73,8 @@ public class KeyGen {
             }
 
             try {
-                KeyPair kpair = KeyPair.genKeyPair(jsch, type);
-                kpair.setPassphrase(passphrase);
-                kpair.writePrivateKey(filename);
+                KeyPair kpair = KeyPair.genKeyPair(jsch, type,Integer.parseInt(ttt.Experimental.Code.SSHKEYSIZE.get()));
+                kpair.writePrivateKey(filename,passphrase.getBytes());
                 kpair.writePublicKey(filename + ".pub", comment);
                 System.out.println("Finger print: " + kpair.getFingerPrint());
                 kpair.dispose();
