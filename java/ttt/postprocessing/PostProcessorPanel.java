@@ -40,6 +40,7 @@ import java.io.FileWriter;
 import java.io.IOException;
 import java.io.PrintWriter;
 import java.io.UnsupportedEncodingException;
+import java.net.URL;
 import java.security.MessageDigest;
 import java.util.Date;
 import java.util.Formatter;
@@ -1450,6 +1451,13 @@ public class PostProcessorPanel extends GradientPanel {
 
                     //mp4 podcast
                     session.publish(recording.getDirectory() + recording.getFileBase() + ".mp4", basePath, batch);
+                    
+                    // Trigger server callback
+                    TTT.debug("triggering http://"+host+"/php/posthook.php?vorlesung="+recording.getFileBase());
+                    URL trigger = new URL("http://"+host+"/php/posthook.php?vorlesung="+recording.getFileBase());
+                    trigger.openStream().read();
+                    
+                    
                     
                     System.out.println("Published\n");
 
