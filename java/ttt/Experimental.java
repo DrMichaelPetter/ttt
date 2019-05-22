@@ -41,6 +41,8 @@ public class Experimental {
 		}
 	}
 	public static void main(String[] args) throws BackingStoreException, IllegalArgumentException, IllegalAccessException{
+		int size = (int)(Toolkit.getDefaultToolkit().getScreenResolution()*.25);
+		System.setProperty("swing.plaf.metal.controlFont","DejaVu Sans Mono Book-"+size);
 		for (String s : experimentalRoot.childrenNames())
 			System.out.println(s);
 		

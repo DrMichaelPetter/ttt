@@ -1516,7 +1516,10 @@ public class TTT extends JFrame {
 
 	public static void main(String[] args) throws NumberFormatException,
 			IOException {
-
+		if (!System.getProperty("os.name").startsWith("Windows")) {
+			int size = (int)(Toolkit.getDefaultToolkit().getScreenResolution()*.2);
+			System.setProperty("swing.plaf.metal.controlFont","DejaVu Sans Mono Book-"+size);
+		}
 		// parse command line options
 		for (int i = 0; i < args.length; ++i) {
 			if (args[i].length() == 2 && args[i].charAt(0) == '-') {
