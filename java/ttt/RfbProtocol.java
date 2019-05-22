@@ -1,6 +1,6 @@
 // TeleTeachingTool - Presentation Recording With Automated Indexing
 //
-// Copyright (C) 2003-2008 Peter Ziewer - Technische Universität München
+// Copyright (C) 2003-2008 Peter Ziewer - Technische Universitï¿½t Mï¿½nchen
 // 
 //    This file is part of TeleTeachingTool.
 //
@@ -63,12 +63,12 @@ public class RfbProtocol extends GraphicsContext implements Runnable,
 
 		this.connection = connection;
 
-		if (prefs.framebufferWidth > 1024 || prefs.framebufferHeight > 768) {
-			TTT.showMessage("Warning:\n" + "The current VNC desktop size is "
-					+ prefs.framebufferWidth + "x" + prefs.framebufferHeight
-					+ ".\n" + "A size of up to 1024x768 is recommended.",
-					"Warning: large resolution", JOptionPane.WARNING_MESSAGE);
-		}
+//		if (prefs.framebufferWidth > 1024 || prefs.framebufferHeight > 768) {
+//			TTT.showMessage("Warning:\n" + "The current VNC desktop size is "
+//					+ prefs.framebufferWidth + "x" + prefs.framebufferHeight
+//					+ ".\n" + "A size of up to 1024x768 is recommended.",
+//					"Warning: large resolution", JOptionPane.WARNING_MESSAGE);
+//		}
 
 		// streams
 		is = new DataInputStream(connection.getInputStream());
