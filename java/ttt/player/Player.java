@@ -95,7 +95,7 @@ public class Player extends JInternalFrame {
     public static void main(String[] args){
     	try {
     		JFrame jay = new JFrame("Player");
-			Player play = new Player("/home/petter/ttt/testrecordings/Diskrete_Strukturen_2013_10_29.ttt");
+			Player play = new Player(args[0]);
 			jay.add(play);
 		//	jay.setSize(300,300);
 			jay.pack();

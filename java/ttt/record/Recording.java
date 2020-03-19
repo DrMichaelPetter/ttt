@@ -51,6 +51,8 @@ import ttt.Constants;
 import ttt.ProtocolPreferences;
 import ttt.TTT;
 import ttt.audio.AudioVideoPlayer;
+import ttt.audio.JMFAudioVideoPlayer;
+import ttt.audio.JavaSoundPlayer;
 import ttt.audio.VolumeControl;
 import ttt.messages.HextileMessage;
 import ttt.gui.GraphicsContext;
@@ -124,8 +126,10 @@ public class Recording extends MessageProducerAdapter implements Runnable,
 
 		// TODO: audio/video may not bee needed for batch processing (e.g.
 		// script generation)
-		if (loadAudioVideoStreams)
-			audioVideoPlayer = new AudioVideoPlayer(filename, this);
+		if (loadAudioVideoStreams){
+			audioVideoPlayer = new JavaSoundPlayer(filename,this);
+//			audioVideoPlayer = new JMFAudioVideoPlayer(filename, this);
+		}
 		else
 			System.out.println("batch mode - not loading audio/video streams");
 
