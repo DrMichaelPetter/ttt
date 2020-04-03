@@ -58,7 +58,7 @@ public class PodcastCreator {
 		
 		if (args.length == 0) {
 			System.out.println("PodcastCreator filename.ttt ");
-			System.out.println("PodcastCreator filename.ttt [-originalsize| - size widthxheight] [-debug] [-crop widthxheight+xxy]");
+			System.out.println("PodcastCreator filename.ttt [-originalsize| - size width[xheight]] [-debug] [-crop widthxheight+xxy]");
 			return;
 		}
     TTT.verbose=false;
@@ -90,8 +90,12 @@ public class PodcastCreator {
                 break;
             case "-size":
                 String [] res = args[i].split("x");
-                cropw=width=Integer.parseInt(res[0]);
-                height=Integer.parseInt(res[1]);
+				cropw=width=Integer.parseInt(res[0]);
+				if (res.length==1){
+					height=(int)(width * recording.prefs.framebufferHeight)/recording.prefs.framebufferWidth;
+				}
+				else
+                	height=Integer.parseInt(res[1]);
                 cropx=cropy=0;
                 if (height%2==1) height++;
                 croph=height;
