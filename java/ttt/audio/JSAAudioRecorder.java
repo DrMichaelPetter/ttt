@@ -40,10 +40,12 @@ import javax.sound.sampled.TargetDataLine;
 
 public class JSAAudioRecorder extends Thread implements IAudioRecorder {
     private static final AudioFormat[] audioFormats = {
-            new AudioFormat(AudioFormat.Encoding.PCM_SIGNED, 22050.0F, 16, 1, 2, 22050.0F, false),
-            new AudioFormat(AudioFormat.Encoding.PCM_SIGNED, 11025.0F, 16, 1, 2, 11025.0F, false),
-            new AudioFormat(AudioFormat.Encoding.PCM_SIGNED, 44100.0F, 16, 1, 2, 44100.0F, false),
-            new AudioFormat(AudioFormat.Encoding.PCM_SIGNED, 8000.0F, 16, 1, 2, 8000.0F, false) };
+        new AudioFormat(AudioFormat.Encoding.PCM_SIGNED, 48000.0F, 24, 1, 3, 48000.0F, false),
+        new AudioFormat(AudioFormat.Encoding.PCM_SIGNED, 44100.0F, 24, 1, 3, 44100.0F, false),
+        new AudioFormat(AudioFormat.Encoding.PCM_SIGNED, 44100.0F, 16, 1, 2, 44100.0F, false),
+        new AudioFormat(AudioFormat.Encoding.PCM_SIGNED, 22050.0F, 16, 1, 2, 22050.0F, false),
+        new AudioFormat(AudioFormat.Encoding.PCM_SIGNED, 11025.0F, 16, 1, 2, 11025.0F, false),
+        new AudioFormat(AudioFormat.Encoding.PCM_SIGNED, 8000.0F, 16, 1, 2, 8000.0F, false) };
 
     private File outputFile;
     private DataLine.Info info;
@@ -73,8 +75,8 @@ public class JSAAudioRecorder extends Thread implements IAudioRecorder {
 
     public static void main(String[] args) {
         ArrayList<AudioFormat> formats = new ArrayList<AudioFormat>();
-        float[] sampleRates = { 8000f, 11025f, 16000f, 22050f, 44100f };
-        int[] bitsPerSample = { 8, 16 };
+        float[] sampleRates = { 8000f, 11025f, 16000f, 22050f, 44100f , 48000f};
+        int[] bitsPerSample = { 8, 16, 24 };
         int[] channels = { 1, 2 };
         for (float f : sampleRates) {
             for (int i : bitsPerSample) {
