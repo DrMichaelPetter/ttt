@@ -347,19 +347,19 @@ public class WizardController extends javax.swing.JFrame {
             //close the wizard
             this.setVisible(false);
             
-            //check screen resolution
-            Dimension screenSize = Toolkit.getDefaultToolkit().getScreenSize();
-            if(screenSize.height > 768 || screenSize.width > 1024){
-                if(m_Language == "EN"){
-                    JOptionPane.showMessageDialog(this, "The current VNC desktop size is "+screenSize.width
-                            +"x"+screenSize.height+".\n" +
-                            "A size of up to 1024x768 is recommended.","Warning: large resolution", JOptionPane.WARNING_MESSAGE);
-                } else{
-                    JOptionPane.showMessageDialog(this, "Die aktuelle Desktop Aufl�sung betr�gt: "+screenSize.width
-                            +"x"+screenSize.height+".\n" +
-                            "Eine Aufl�sung von 1024x768 wird empfohlen.","Warnung: zu hohe Aufl�sung", JOptionPane.WARNING_MESSAGE);
-                }
-            }
+//            //check screen resolution
+//            Dimension screenSize = Toolkit.getDefaultToolkit().getScreenSize();
+//            if(screenSize.height > 768 || screenSize.width > 1024){
+//                if(m_Language == "EN"){
+//                    JOptionPane.showMessageDialog(this, "The current VNC desktop size is "+screenSize.width
+//                            +"x"+screenSize.height+".\n" +
+//                            "A size of up to 1024x768 is recommended.","Warning: large resolution", JOptionPane.WARNING_MESSAGE);
+//                } else{
+//                    JOptionPane.showMessageDialog(this, "Die aktuelle Desktop Aufl�sung betr�gt: "+screenSize.width
+//                            +"x"+screenSize.height+".\n" +
+//                            "Eine Aufl�sung von 1024x768 wird empfohlen.","Warnung: zu hohe Aufl�sung", JOptionPane.WARNING_MESSAGE);
+//                }
+//            }
             
             
             //check if tray icons are supported
